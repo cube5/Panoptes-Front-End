@@ -21,7 +21,7 @@
     "markdownz": "~4.0.2",
     "modal-form": "~2.3.0",
     "moment": "~2.9.0",
-    "panoptes-client": "git://github.com/CKrawczyk/panoptes-javascript-client.git#add-stats-server",
+    "panoptes-client": "git://github.com/zooniverse/panoptes-javascript-client.git#stats-client",
     "papaparse": "mholt/PapaParse#cada171",
     "qs": "~6.0.2",
     "rc-slider": "~3.3.2",
