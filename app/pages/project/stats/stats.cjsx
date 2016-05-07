@@ -14,16 +14,19 @@ GraphSelect = React.createClass
     
   componentDidMount: ->
     statsClient
-      .update
-        projectId: @props.projectId
-        workflowId: @props.workflowId
-      .statCount @props.by, @props.type
+      .query
+        project_id: @props.projectId
+        workflow_id: @props.workflowId
+        period: @props.by
+        type: @props.type
       .then (data) ->
         data.map (stat_object) ->
           label: stat_object.key_as_string
           value: stat_object.doc_count
       .then (statData) =>
         @setState {statData}
+      .catch (e) ->
+        console?.log 'Failed to fetch stats'
     
   componentWillReceiveProps: (nextProps) ->
     # beacause I can't think of a cleaner way to check for this
@@ -112,14 +115,17 @@ WorkflowProgress = React.createClass
   
   componentDidMount: ->
     statsClient
-      .update
-        workflowId: @props.workflow?.id
-      .statCount 'day', 'classification'
+      .query
+        workflow_id: @props.workflow?.id
+        period: 'day'
+        type: 'classification'
       .then (data) ->
         data.map (stat_object) ->
           stat_object.doc_count
       .then (statData) =>
         @setState {statData}
+      .catch (e) ->
+        console?.log 'Failed to fetch stats'
         
   render: ->
     if @props.workflow.retirement.criteria == 'classification_count'
