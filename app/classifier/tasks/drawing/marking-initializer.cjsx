@@ -11,9 +11,6 @@ module.exports = React.createClass
     frame: 0
     getEventOffset: null
 
-  componentWillReceiveProps: ->
-    @findSchema()
-
   render: ->
     toolDescription = @props.task.tools[@props.annotation._toolIndex]
     marksFromCurrentTool = @props.annotation.value.filter (mark) =>
@@ -26,6 +23,7 @@ module.exports = React.createClass
     </Draggable>
 
   handleInitStart: (e) ->
+    @findSchema
     tasks = require '..' # Circular
 
     taskDescription = @props.workflow.tasks[@props.annotation.task]
