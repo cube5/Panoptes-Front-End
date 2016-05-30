@@ -23,7 +23,7 @@ module.exports = React.createClass
     </Draggable>
 
   handleInitStart: (e) ->
-    @findSchema
+    @findSchema()
     tasks = require '..' # Circular
 
     taskDescription = @props.workflow.tasks[@props.annotation.task]
